@@ -6,27 +6,21 @@ def main():
         for j in range(len(matriz[i])):
             matriz[i][j] = input()
 
-
-    # somo os itens da area direita de uma matriz
-    matriz = area_direita(matriz, operacao)
+    # somo os itens acima da diagonal secundaria
+    matriz = acima_diagonal_secundaria(matriz, operacao)
     print("%.1f" % matriz)
 
-
-# função para somar os itens da area direita de uma matriz
-def area_direita(matriz, operacao):
+# função para somar os itens acima da diagonal secundaria
+def acima_diagonal_secundaria(matriz, operacao):
     soma = 0
     cont = 0
-    for i in range(1, 10+1):
-        if 12-i >= 7:
-            for j in range(12-i, 11+1):
-                soma += float(matriz[i][j])
-                cont += 1
-        else:
-            for l in range(11, i, -1):
-                soma += float(matriz[i][l])
-                cont += 1
+    for i in range(0, 10+1):
+        # if i < 10:
+        for j in range(0,11-i):
+            soma += float(matriz[i][j])
+            cont += 1
 
-    # verifico se a operação solicitada e soma ou media
+    # # verifico se a operação solicitada e soma ou media
     if operacao == "S":
         return soma
     elif operacao == "M":
