@@ -2,35 +2,31 @@ def main():
     # crio a matriz quadrada
     matriz = nova_matriz(12, 12)
     operacao = input()
-    # for i in range(len(matriz)):
-    #     for j in range(len(matriz[i])):
-    #         matriz[i][j] = input()
-
-    # somo os itens acima da diagonal secundaria
-    matriz = acima_diagonal_secundaria(matriz, operacao)
-    # print("%.1f" % matriz)
-
     for i in range(len(matriz)):
         for j in range(len(matriz[i])):
-            print(matriz[i][j], end=' ')
-        print(" ")
+            matriz[i][j] = input()
 
-# função para somar os itens acima da diagonal secundaria
-def acima_diagonal_secundaria(matriz, operacao):
+    # somo os itens da area superior
+    matriz = area_superior(matriz, operacao)
+    print("%.1f" % matriz)
+
+
+# função para somar os itens da area superior
+def area_superior(matriz, operacao):
     soma = 0
     cont = 0
-    for i in range(0, 4+1):
-        # if i < 10:
-        for j in range(1, 10+1):
-            matriz[i][j] = '@'
-            cont += 1
+    for i in range(len(matriz)):
+        for j in range(len(matriz[i])):
+            if j > i  and i + j < len(matriz) - 1:
+                soma += float(matriz[i][j])
+                cont += 1
 
-    # # # verifico se a operação solicitada e soma ou media
-    # if operacao == "S":
-    #     return soma
-    # elif operacao == "M":
-    #     return soma/cont
-    return matriz
+    # # verifico se a operação solicitada e soma ou media
+    if operacao == "S":
+        return soma
+    elif operacao == "M":
+        return soma/cont
+
 
 # função para cria uma matriz
 def nova_matriz(colunas, linhas):
